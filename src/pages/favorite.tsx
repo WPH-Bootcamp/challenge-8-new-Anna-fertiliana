@@ -7,7 +7,7 @@ import { getFavoriteMovies, addFavorite } from "../lib/favorite";
 
 const IMAGE_W185 = "https://image.tmdb.org/t/p/w185";
 
-/* ================= FETCH TRAILER ================= */
+/* == FETCH TRAILER == */
 
 const fetchTrailer = async (id: number) => {
   const { data } = await api.get(`/movie/${id}/videos`);
@@ -16,7 +16,7 @@ const fetchTrailer = async (id: number) => {
   );
 };
 
-/* ================= ITEM COMPONENT ================= */
+/* == ITEM COMPONENT == */
 
 const FavoriteItem = ({
   movie,
@@ -32,7 +32,7 @@ const FavoriteItem = ({
 
   return (
     <div className="flex items-center gap-6 pb-8 border-b border-white/10">
-      {/* POSTER */}
+    {/* POSTER */}
       <img
         src={
           movie.poster_path
@@ -43,7 +43,7 @@ const FavoriteItem = ({
         className="w-24 rounded-lg"
       />
 
-      {/* INFO */}
+    {/* INFO */}
       <div className="flex-1">
         <h3 className="font-semibold mb-3">{movie.title}</h3>
 
@@ -82,7 +82,7 @@ const FavoriteItem = ({
   );
 };
 
-/* ================= PAGE ================= */
+/* == PAGE == */
 
 const Favorites = () => {
   const queryClient = useQueryClient();
@@ -110,7 +110,7 @@ const Favorites = () => {
       <main className="min-h-[70vh] max-w-7xl mx-auto px-6 md:px-10 py-16">
         <h1 className="text-2xl font-semibold mb-10">Favorites</h1>
 
-        {/* EMPTY STATE */}
+      {/* EMPTY STATE */}
         {isEmpty && (
           <div className="flex flex-col items-center justify-center text-center mt-24">
             <img
@@ -118,9 +118,7 @@ const Favorites = () => {
               alt="Empty Favorite"
               className="w-24 mb-6 opacity-80"
             />
-
             <h2 className="text-lg font-semibold mb-2">Data Empty</h2>
-
             <p className="text-gray-400 text-sm mb-6">
               You don’t have a favorite movie yet.
             </p>
@@ -135,7 +133,7 @@ const Favorites = () => {
           </div>
         )}
 
-        {/* FAVORITE LIST */}
+      {/* FAVORITE LIST */}
         {!isEmpty && (
           <div className="space-y-8">
             {movies.map((movie: any) => (

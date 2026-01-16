@@ -10,7 +10,7 @@ import WatchTrailerButton from "../components/WatchTrailerButton";
 const IMAGE_ORIGINAL = "https://image.tmdb.org/t/p/original";
 const IMAGE_W300 = "https://image.tmdb.org/t/p/w300";
 
-/* ================= TYPES ================= */
+/* == TYPES == */
 
 type Movie = {
   id: number;
@@ -25,7 +25,7 @@ type Trailer = {
   key: string;
 };
 
-/* ================= FETCHERS ================= */
+/* == FETCHERS == */
 
 const fetchTrendingMovies = async (): Promise<Movie[]> => {
   const { data } = await api.get("/trending/movie/week");
@@ -44,7 +44,7 @@ const fetchTrailer = async (id: number): Promise<Trailer | undefined> => {
   );
 };
 
-/* ================= COMPONENT ================= */
+/* == COMPONENT == */
 
 const Home = () => {
   const [visibleCount, setVisibleCount] = useState(15);
@@ -72,70 +72,69 @@ const Home = () => {
   return (
     <>
       <main className="text-white bg-[#0F0F0F]">
-        {/* ================= HERO ================= */}
-        {heroMovie && (
-          <section className="relative h-[520px] overflow-hidden">
-            {/* BACKGROUND */}
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{
-                backgroundImage: heroMovie.backdrop_path
-                  ? `url(${IMAGE_ORIGINAL}${heroMovie.backdrop_path})`
-                  : undefined,
-              }}
-            />
+    {/* == HERO == */}
+      {heroMovie && (
+        <section className="relative h-[520px] overflow-hidden">
+      {/* BACKGROUND */}
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: heroMovie.backdrop_path
+              ? `url(${IMAGE_ORIGINAL}${heroMovie.backdrop_path})`
+              : undefined,
+            }}
+          />
 
-            {/* OVERLAY */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+      {/* OVERLAY */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
 
-            {/* NAVBAR */}
-            <div className="relative z-50">
-              <Navbar />
-            </div>
+      {/* NAVBAR */}
+          <div className="relative z-50">
+            <Navbar />
+          </div>
 
-            {/* CONTENT */}
-            <div className="relative z-20 h-full flex items-center">
-              <div className="w-full px-6 md:px-10">
-                <div className="max-w-2xl">
-                  <h1 className="text-4xl font-bold mb-4">
-                    {heroMovie.title}
-                  </h1>
+      {/* CONTENT */}
+          <div className="relative z-20 h-full flex items-center">
+            <div className="w-full px-6 md:px-10">
+            <div className="max-w-2xl">
+              <h1 className="text-4xl font-bold mb-4">
+               {heroMovie.title}
+              </h1>
+              <p className="text-sm text-gray-300 mb-6 line-clamp-3">
+                {heroMovie.overview}
+              </p>
 
-                  <p className="text-sm text-gray-300 mb-6 line-clamp-3">
-                    {heroMovie.overview}
-                  </p>
+      {/* ACTION */}
+          <div className="flex gap-4 mb-6">
+              {trailer && (
+              <WatchTrailerButton youtubeKey={trailer.key} />
+             )}
 
-                  {/* ACTION */}
-                  <div className="flex gap-4 mb-6">
-                    {trailer && (
-                      <WatchTrailerButton youtubeKey={trailer.key} />
-                    )}
+            <button
+              onClick={() => navigate(`/movie/${heroMovie.id}`)}
+              className="border border-white/30
+                         px-6 py-3 rounded-full
+                         text-sm hover:bg-white/10"
+                >
+                  See Detail
+            </button>
+          </div>
+          </div>
+          </div>
+          </div>
 
-                    <button
-                      onClick={() => navigate(`/movie/${heroMovie.id}`)}
-                      className="border border-white/30
-                                 px-6 py-3 rounded-full
-                                 text-sm hover:bg-white/10"
-                    >
-                      See Detail
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* FADE */}
-            <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-[#0F0F0F]" />
+      {/* FADE */}
+          <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-[#0F0F0F]" />
           </section>
         )}
 
-        {/* ================= TRENDING NOW ================= */}
+        {/* == TRENDING NOW == */}
         <section className="mt-12 relative">
           <div className="max-w-7xl mx-auto px-6 md:px-10 mb-4">
             <h2 className="text-xl font-semibold">Trending Now</h2>
           </div>
 
-          {/* ARROW LEFT */}
+        {/* ARROW LEFT */}
           <button
             onClick={() =>
               scrollRef.current?.scrollBy({ left: -500, behavior: "smooth" })
@@ -147,7 +146,7 @@ const Home = () => {
             <img src="/arrow-left.svg" className="w-4 h-4" />
           </button>
 
-          {/* ARROW RIGHT */}
+        {/* ARROW RIGHT */}
           <button
             onClick={() =>
               scrollRef.current?.scrollBy({ left: 500, behavior: "smooth" })
@@ -159,7 +158,7 @@ const Home = () => {
             <img src="/arrow-right.svg" className="w-4 h-4" />
           </button>
 
-          {/* SCROLL ROW */}
+        {/* SCROLL ROW */}
           <div
             ref={scrollRef}
             className="flex gap-4 px-6 md:px-10 pb-4
@@ -192,14 +191,14 @@ const Home = () => {
           </div>
         </section>
 
-        {/* ================= NEW RELEASE ================= */}
-<section className="relative max-w-7xl mx-auto px-6 md:px-10 mt-14 pb-32">
-  <h2 className="text-xl font-semibold mb-6">New Release</h2>
+        {/* == NEW RELEASE == */}
+      <section className="relative max-w-7xl mx-auto px-6 md:px-10 mt-14 pb-32">
+        <h2 className="text-xl font-semibold mb-6">New Release</h2>
+          <div className="relative">
 
-  <div className="relative">
-    {/* MOVIE GRID */}
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-      {newReleaseMovies?.slice(0, visibleCount).map((movie) => (
+        {/* MOVIE GRID */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {newReleaseMovies?.slice(0, visibleCount).map((movie) => (
         <div
           key={movie.id}
           onClick={() => navigate(`/movie/${movie.id}`)}
@@ -230,52 +229,51 @@ const Home = () => {
       ))}
     </div>
 
-    {visibleCount < (newReleaseMovies?.length ?? 0) && (
-  <>
-    {/* GRADIENT SHADOW */}
-    <div
-      className="pointer-events-none absolute bottom-0 left-0
+        {visibleCount < (newReleaseMovies?.length ?? 0) && (
+        <>
+      {/* GRADIENT SHADOW */}
+      <div
+        className="pointer-events-none absolute bottom-0 left-0
                  w-full h-32
                  bg-gradient-to-t
                  from-[#0F0F0F]
                  via-[#0F0F0F]/70
                  to-transparent
                  z-10"
-    />
+      />
 
-    {/* SOFT BLUR LAYER */}
-    <div
-      className="pointer-events-none absolute bottom-0 left-0
+      {/* SOFT BLUR LAYER */}
+      <div
+        className="pointer-events-none absolute bottom-0 left-0
                  w-full h-20
                  backdrop-blur-[1.5px]
                  bg-black/20
                  z-20"
-    />
+      />
 
-    {/* LOAD MORE BUTTON */}
-    <div
-      className="absolute bottom-14 left-1/2
+      {/* LOAD MORE BUTTON */}
+      <div
+        className="absolute bottom-14 left-1/2
                  -translate-x-1/2 z-30"
-    >
-      <button
-        onClick={() => setVisibleCount((prev) => prev + 25)}
-        className="px-10 py-3 rounded-full
+      >
+        <button
+          onClick={() => setVisibleCount((prev) => prev + 25)}
+          className="px-10 py-3 rounded-full
                    bg-black/50 backdrop-blur-md
                    border border-white/20
                    text-sm font-medium
                    hover:bg-black/60 transition"
-      >
-        Load More
-      </button>
-    </div>
+        >
+          Load More
+        </button>
+      </div>
   </>
-)}
+    )}
 
-  </div>
-</section>
+      </div>
+    </section>
 
       </main>
-
       <Footer />
     </>
   );
