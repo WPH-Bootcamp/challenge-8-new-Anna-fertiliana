@@ -1,0 +1,46 @@
+.toast-success {
+  position: fixed;
+  top: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-width: 320px;     
+  padding: 14px 20px;
+
+ background: rgba(0, 0, 0, 0.18);
+backdrop-filter: blur(22px);
+-webkit-backdrop-filter: blur(22px);
+
+
+  border-radius: 14px;
+
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+
+  z-index: 999;
+
+  animation: toast-slide 0.3s ease-out;
+}
+
+.toast-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* ANIMATION */
+@keyframes toast-slide {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
