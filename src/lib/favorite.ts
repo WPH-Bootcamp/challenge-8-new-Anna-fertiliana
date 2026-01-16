@@ -1,6 +1,6 @@
 import { api } from "./api";
 
-// ✅ ADD / REMOVE FAVORITE (toggle)
+// ADD / REMOVE FAVORITE (toggle)
 export const addFavorite = async (
   movieId: number,
   favorite: boolean
@@ -25,7 +25,7 @@ export const addFavorite = async (
   );
 };
 
-// ✅ CHECK FAVORITE STATUS
+// CHECK FAVORITE STATUS
 export const getFavoriteStatus = async (movieId: number) => {
   const sessionId = localStorage.getItem("session_id");
 
