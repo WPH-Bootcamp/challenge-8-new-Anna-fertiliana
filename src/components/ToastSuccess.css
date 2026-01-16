@@ -11,10 +11,9 @@
   min-width: 320px;     
   padding: 14px 20px;
 
- background: rgba(0, 0, 0, 0.18);
-backdrop-filter: blur(22px);
--webkit-backdrop-filter: blur(22px);
-
+  background: rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
 
   border-radius: 14px;
 
